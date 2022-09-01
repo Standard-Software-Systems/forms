@@ -29,6 +29,9 @@
         header("Location: ../");
     }
     $form = $form->fetch(PDO::FETCH_ASSOC);
+    if($_SESSION['id'] !== $form['userid']) {
+        header("Location: ../");
+    }
     $questions = $connection->prepare("SELECT * FROM questions WHERE formId = :id");
     $questions->execute(
         array(
